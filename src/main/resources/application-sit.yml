@@ -1,0 +1,32 @@
+# ===================================================================
+# Spring Boot configuration for the "sit" profile (K8s / SIT namespace).
+# Overrides base: points to in-cluster service names, enables Liquibase
+# with demo data, enables debug logging.
+# Infrastructure is provisioned by the Kubernetes cluster.
+# ===================================================================
+
+spring:
+  liquibase:
+    contexts: demo
+
+logging:
+  level:
+    com.iqkv: DEBUG
+    org.mybatis: INFO
+    liquibase: INFO
+
+iqkv:
+  db:
+    host: ${DB_HOST}
+    port: ${DB_PORT}
+    name: ${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+  auth:
+    jwt:
+      jwks-uri: ${JWT_JWKS_URI}
